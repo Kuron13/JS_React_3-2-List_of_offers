@@ -1,17 +1,27 @@
 import React from 'react';
 
+type Item = {
+  listing_id: number,
+  url: string,
+  MainImage: string,
+  title: string,
+  currency_code: string,
+  price: string,
+  quantity: number,
+};
+
 export function Listing({ items = [] }) {
 
   return (
     <div className="item-list">
-      {items.length > 0 && items.map((item) => (item.state === 'active' && <ItemCard key={item.id} item={item}/>))}
+      {items.length > 0 && items.map((item) => (item.state === 'active' && <ItemCard key={item.listing_id} listing_id={item.listing_id} url={item.url} MainImage={item.MainImage.url_570xN} title={item.title} currency_code={item.currency_code} price={item.price} quantity={item.quantity}/>))}
     </div>
   )
 
 }
 
 
-export function ItemCard({ item = {} }) {
+export function ItemCard(item: Item) {
 
   const level = item.quantity <= 10 ? 'level-low'
     : item.quantity <= 20 ? 'level-medium'
@@ -21,7 +31,7 @@ export function ItemCard({ item = {} }) {
     <div className="item">
       <div className="item-image">
         <a href={item.url}>
-          <img src={item.MainImage.url_570xN}/>
+          <img src={item.MainImage}/>
         </a>
       </div>
       <div className="item-details">

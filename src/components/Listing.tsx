@@ -1,5 +1,9 @@
 import React from 'react';
 
+type ListingProps<T> = {
+  items?: T[];
+};
+
 type Item = {
   listing_id: number,
   url: string,
@@ -10,7 +14,7 @@ type Item = {
   quantity: number,
 };
 
-export function Listing({ items = [] }) {
+export function Listing<T>({ items = [] }: ListingProps<T>) {
 
   return (
     <div className="item-list">
